@@ -1,6 +1,7 @@
 import React, { useState } from "react"; // Corregido 'UseState' a 'useState'
 import uniqid from "uniqid";
 import axios from "axios";
+import swal from "sweetalert2";
 
 function AgregarUsuario() {
   // Hooks
@@ -20,7 +21,8 @@ function AgregarUsuario() {
     axios
       .post("/api/usuario/agregarUsuario", usuario)
       .then((res) => {
-        alert(res.data);
+        //alert(res.data);
+        swal.fire("Usuario agregado correctamente");
       })
       .catch((error) => {
         // Corregido 'then' por 'catch' para capturar errores correctamente
