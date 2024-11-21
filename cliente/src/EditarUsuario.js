@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-
+import swal from "sweetalert2";
 function EditarUsuario() {
   const params = useParams();
 
@@ -9,6 +9,8 @@ function EditarUsuario() {
   const [nombre, setNombre] = useState(""); 
   const [email, setEmail] = useState(""); 
   const [telefono, setTelefono] = useState(""); 
+
+  // Efecto para cargar los datos del usuario al principio
 
   // Cargar los datos del usuario al principio
   useEffect(() => {
@@ -41,8 +43,8 @@ function EditarUsuario() {
       .post("/api/usuario/actualizarUsuario/", usuarioActualizado)
       .then((res) => {
         console.log("Usuario actualizado:", res.data);
-        alert(res.data)
-        // Podrías redirigir o mostrar un mensaje de éxito
+        //alert(res.data);
+        swal.fire("Usuario agregado correctamente");
       })
       .catch((err) => {
         console.error("Error al actualizar el usuario", err);
