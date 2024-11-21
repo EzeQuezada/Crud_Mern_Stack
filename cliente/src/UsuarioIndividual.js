@@ -1,11 +1,18 @@
 import axios from 'axios';
-import React from 'react';
+import React,{useEffect} from 'react';
 import  {Link} from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function UsuarioIndividual({usuario}){
 
   const navegar = useNavigate();
+
+  //Para animacion de scrooll al bajar
+  useEffect(() => {
+    AOS.init();
+  }, []);
   //function para borrar usuario
   function borrarUsuario(idUsuario){
     axios.post("/api/usuario/borrarUsuario", { idUsuario: idUsuario }) 
@@ -20,7 +27,7 @@ function UsuarioIndividual({usuario}){
   return (
     <div className="container">
       <div className="row">
-        <div className='col-sm-6 offset-3'> 
+        <div className='col-sm-6 offset-3' data-aos="flip-right"> 
         <ul className="list-group">
           <li className='list-group-item'>{usuario.idUsuario}</li>
           <li className='list-group-item'>{usuario.nombre}</li>
